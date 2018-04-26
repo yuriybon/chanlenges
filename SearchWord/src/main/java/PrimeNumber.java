@@ -12,6 +12,7 @@ public class PrimeNumber {
 			System.out.printf("The number %d is not prime",myInt);
 		}
 		System.out.println("");
+		//
 	}
 
 }
