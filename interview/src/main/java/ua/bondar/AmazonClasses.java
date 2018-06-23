@@ -1,14 +1,20 @@
 package ua.bondar;
 
-//                      (-)
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+//                       (-)
+//                      /   \
+//                     /     \
 //                    /       \
 //                   /         \
 //                 	/           \
 //                 (*)         (/)
 //                 /   \       /   \
-//                 (3)   (2)   (+)   (8)
-//                              /   \
-//                              (5)   (3)
+//               (3)   (2)   (+)   (8)
+//                           / \
+//                         (5) (3)
 
 
 public class AmazonClasses {
@@ -33,28 +39,26 @@ public class AmazonClasses {
         	 if (this.left == null || this.right == null) {
         		 return value;
         	 }
-             return  "("+left.value + value  + right.value +")" ;
-
-//             return "Node{" +
-//                     "value='" + value + '\'' +
-//                     ", left=" + left +
-//                     ", right=" + right +
-//                     '}';
+             return  "("+left + value  + right +")" ;
          }
      }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ScriptException {
         System.out.println("test1");
 
         Node tree = new Node("-");
-        tree.right = new Node("*");
-        tree.left = new Node("/");
-        tree.right.right = new Node("3");
-        tree.right.left = new Node("2");
-        tree.left.right = new Node("+");
-        tree.left.left = new Node("8");
-        tree.left.right.right = new Node("5");
-        tree.left.right.left = new Node("3");
-        System.out.println(tree);
+        tree.left = new Node("*");
+        tree.right = new Node("/");
+        tree.left.left = new Node("3");
+        tree.left.right = new Node("2");
+        tree.right.left = new Node("+");
+        tree.right.left.left = new Node("5");
+        tree.right.left.right = new Node("3");
+        tree.right.right = new Node("8");
+        String expression = tree.toString();
+        System.out.println(expression);
+        ScriptEngineManager mgr = new ScriptEngineManager();
+        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+        System.out.println(engine.eval(expression));
     }
 }
