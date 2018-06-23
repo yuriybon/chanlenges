@@ -1,8 +1,9 @@
 package ua.bondar;
 
-//                  (-)
-//                 /   \
-//                 /         \
+//                      (-)
+//                    /       \
+//                   /         \
+//                 	/           \
 //                 (*)         (/)
 //                 /   \       /   \
 //                 (3)   (2)   (+)   (8)
@@ -11,7 +12,7 @@ package ua.bondar;
 
 
 public class AmazonClasses {
-     static  Node {
+     private static class Node {
          private String value;
 
          public String getValue() {
@@ -20,6 +21,8 @@ public class AmazonClasses {
 
          public Node(String value) {
              this.value = value;
+             this.left = null;
+             this.right = null;
          }
 
          Node left;
@@ -27,8 +30,10 @@ public class AmazonClasses {
 
          @Override
          public String toString() {
-
-             return  value + left  + right ;
+        	 if (this.left == null || this.right == null) {
+        		 return value;
+        	 }
+             return  "("+left.value + value  + right.value +")" ;
 
 //             return "Node{" +
 //                     "value='" + value + '\'' +
@@ -39,7 +44,7 @@ public class AmazonClasses {
      }
 
     public static void main(String[] args) {
-        System.out.println("test");
+        System.out.println("test1");
 
         Node tree = new Node("-");
         tree.right = new Node("*");
