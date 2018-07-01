@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ 	  <div>
+  	    <button id="mybutton"  onclick="switchPhoto()" style="border:2px solid black; background-color: transparent;" >&lt;</button>
+  	  </div>
+  	  <div>  
+   		<img id="myphoto" alt="MyDesignPhoto" src="files/123cheese01.jpg" onclick="switchPhoto()">
+  	  </div>
+ <script>
+	function switchPhoto() {
+		 document.getElementById("myphoto").src = "files/hello-sunshine-beautiful-sunset.jpg";
+		
+	}
+</script>
+
+</body>
+</html>
