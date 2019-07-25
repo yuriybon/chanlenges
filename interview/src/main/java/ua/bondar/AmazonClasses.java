@@ -11,7 +11,7 @@ package ua.bondar;
 
 
 public class AmazonClasses {
-     static  Node {
+     static class Node {
          private String value;
 
          public String getValue() {
