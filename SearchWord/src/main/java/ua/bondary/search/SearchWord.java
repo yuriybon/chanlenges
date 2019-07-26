@@ -32,9 +32,12 @@ public class SearchWord {
 
 	}
 
-	public static Map<String,Long> getMap(String str) {
-		return Arrays.asList(str.split(" ")).stream()
-				.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+	public static String getMap(String str) {
+		Entry<String,Long> entry = Arrays.asList(str.split(" ")).stream()
+				.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+				.entrySet().stream().sorted(Collections.reverseOrder( Entry.comparingByValue()))
+				.findFirst().get();
+		return entry.getKey();
 	}
 	
 	public static void oneCoolMethod(String s) {
@@ -45,6 +48,24 @@ public class SearchWord {
                 .filter(e -> e.getValue() > 1)  // filtering
                 .forEach(System.out::println)   // output
                 ;
+	}
+	
+	public static void printLinkedMap(String str) {
+		LinkedHashMap<Character,String> firstSymbol = Arrays.asList(str.split(" ")).stream().collect(
+				Collectors.toMap(s1 -> s1.charAt(0)
+								, s1 -> s1
+								, (s1,s2) -> s1+"|"+s2
+								, LinkedHashMap::new));
+		System.out.println(firstSymbol);
+	}
+	
+	public static void getCountWord(String str) {
+		Arrays.asList(str.split(" ")).stream()
+		.collect(Collectors.groupingBy(s1 -> s1.charAt(0),Collectors.counting()))
+		.entrySet().stream()
+		.sorted(Collections.reverseOrder(Entry.comparingByValue()))
+		.forEach(System.out::println)
+		;
 	}
 
 
@@ -80,22 +101,27 @@ public class SearchWord {
 //				status.put(sarr[i],++count);
 //			}
 //		}
-//		status.entrySet().stream().sorted(Collections.reverseOrder( Entry.comparingByValue())).forEach(System.out::println);
 //		System.out.println("-----");
+//		status.entrySet().stream().sorted(Collections.reverseOrder( Entry.comparingByValue())).forEach(System.out::println);
 //		status.entrySet().stream().forEach(System.out::println);
 
 	}
 
 
 	public static void main(String[] args) {
-  System.out.println("Test");
+  //System.out.println("Test");
 		String str = "Sc we would never be able to return to tell Lightman wanted to go public with what he believed was the real story Henry's father was no hero, and trust me, he does not need to know the real story";
 
 		//searchNestedLoops(str);
 //        oneCoolMethod(str);
 //        Map<String,Long> map = getMap(str);
 //        
-        searchNestedLoops(str);
+       // searchNestedLoops(str);
+        
+        String s = getMap(str);
+        System.out.println("result="+s);
+        printLinkedMap(str);
+        getCountWord(str);
 		//searchStreamNestedLoops(str);
 		//String[] sarr = new String[] {"One","Two","Two","Two","Two","Two","Two","Two"};
 		//Map<String,Integer> list = status.entrySet().stream().sorted(Entry.comparingByValue()).collect(toMap(Entry::getKey, Entry::getValue, (a, b) -> a, LinkedHashMap::new));
