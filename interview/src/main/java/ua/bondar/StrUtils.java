@@ -22,7 +22,7 @@ public class StrUtils {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String s = "treehdsls;";
+		String s = "treehdsls;1drty";
 		System.out.println(reverse(s));
 		System.out.println(inPlaceReverse(s));
 	}
